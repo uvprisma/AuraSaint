@@ -2,1223 +2,915 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AuraSaint - Streetwear de Alta Gama. Faith Over Fear. Calidad y Moda en cada fibra.">
-    <meta name="keywords" content="streetwear, fashion, luxury, aurasaint, nogales, sonora, faith over fear, hoodies, tees">
-    <meta name="author" content="Agencia UVPrisma">
-    <title>AURASAINT | The Elite Collection</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="description" content="AuraSaint - The Official Store. Luxury Streetwear redefined. Faith Over Fear.">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>AURASAINT | APP EXPERIENCE</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@300;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* =========================================
-           1. RESET & VARIABLES GLOBALES
-           ========================================= */
+        /* ====================================================================
+        1.0 CORE VARIABLES & RESET (ARQUITECTURA DE DISEÑO)
+        ====================================================================
+        */
         :root {
-            /* Colores Base */
-            --bg-deep: #020202;
-            --bg-panel: #0a0a0a;
-            --bg-card: #111111;
+            /* PALETA DE COLORES (SISTEMA HSL) */
+            --hue-gold: 45;
+            --sat-gold: 65%;
+            --light-gold: 52%;
             
-            /* Colores de Acento - ORO PURO */
-            --gold-primary: #D4AF37;
-            --gold-light: #F4C430;
-            --gold-dark: #AA8C2C;
-            --gold-metallic: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 100%);
+            --color-gold-pure: #D4AF37;
+            --color-gold-light: #F4C430;
+            --color-gold-dim: #8a7018;
+            --color-gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 45%, #b38728 50%, #fbf5b7 100%);
             
-            /* Textos */
-            --text-white: #ffffff;
-            --text-off-white: #e0e0e0;
-            --text-gray: #888888;
-            
-            /* Tipografías */
+            --color-bg-deep: #000000;
+            --color-bg-panel: #0a0a0a;
+            --color-bg-card: #111111;
+            --color-bg-overlay: rgba(0, 0, 0, 0.85);
+
+            --color-text-main: #ffffff;
+            --color-text-muted: #9e9e9e;
+            --color-text-dark: #121212;
+
+            --color-success: #25D366;
+            --color-error: #ff4444;
+
+            /* TIPOGRAFÍA */
+            --font-primary: 'Montserrat', sans-serif;
             --font-display: 'Cinzel', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --font-alt: 'Oswald', sans-serif;
+            --font-ui: 'Oswald', sans-serif;
+
+            /* ESPACIADO Y LAYOUT */
+            --header-height: 70px;
+            --bottom-nav-height: 60px;
+            --safe-area-top: env(safe-area-inset-top);
+            --safe-area-bottom: env(safe-area-inset-bottom);
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 16px;
             
-            /* Espaciado y Estructura */
-            --container-width: 1400px;
-            --header-height: 90px;
-            --border-radius: 4px;
-            
-            /* Efectos */
-            --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-smooth: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.15);
-            --shadow-deep: 0 20px 50px rgba(0,0,0,0.8);
+            /* EFECTOS Y ANIMACIONES */
+            --shadow-gold-glow: 0 0 20px rgba(212, 175, 55, 0.2);
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.5);
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        /* Reset Avanzado */
-        *, *::before, *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 16px;
-        }
-
+        /* RESET AVANZADO */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
+        html { font-size: 16px; scroll-behavior: smooth; height: 100%; }
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-white);
-            font-family: var(--font-body);
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-main);
+            font-family: var(--font-primary);
             overflow-x: hidden;
-            line-height: 1.7;
+            width: 100%;
+            height: 100%;
             -webkit-font-smoothing: antialiased;
+            padding-bottom: var(--safe-area-bottom);
         }
-
-        /* Scrollbar Personalizado */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-deep);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--gold-dark);
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--gold-primary);
-        }
-
-        /* Selección de Texto */
-        ::selection {
-            background: var(--gold-primary);
-            color: #000;
-        }
-
-        /* =========================================
-           2. UTILIDADES & TIPOGRAFÍA
-           ========================================= */
-        .container {
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            color: var(--text-white);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .gold-text {
-            background: var(--gold-metallic);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: inline-block;
-        }
-
-        .section-padding {
-            padding: 120px 0;
-        }
-
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
         
-        /* Botones de Lujo */
+        /* SCROLLBAR OCULTO (UX MÓVIL) */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        
+        img { display: block; max-width: 100%; height: auto; pointer-events: none; }
+        a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
+        ul { list-style: none; }
+        button, input, textarea { font-family: inherit; border: none; outline: none; }
+
+        /* UTILIDADES DE TEXTO */
+        .text-gold { color: var(--color-gold-pure); }
+        .text-gradient { background: var(--color-gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .font-display { font-family: var(--font-display); }
+        .font-ui { font-family: var(--font-ui); }
+        .text-center { text-align: center; }
+        .uppercase { text-transform: uppercase; }
+
+        /* ====================================================================
+        2.0 UI COMPONENTS (BOTONES, INPUTS, LOADER)
+        ====================================================================
+        */
+        
+        /* BOTONES PREMIUM */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px 45px;
-            font-family: var(--font-alt);
-            font-size: 1rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: var(--transition-fast);
             position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 32px;
+            font-family: var(--font-ui);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--color-gold-pure);
+            background: transparent;
+            border: 1px solid var(--color-gold-pure);
             overflow: hidden;
             cursor: pointer;
-            border: 1px solid var(--gold-primary);
-            background: transparent;
-            color: var(--gold-primary);
+            transition: var(--transition-normal);
             z-index: 1;
         }
 
-        .btn::before {
+        .btn::after {
             content: '';
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 0%;
-            height: 100%;
-            background: var(--gold-primary);
-            transition: var(--transition-smooth);
+            width: 100%;
+            height: 0%;
+            background: var(--color-gold-pure);
+            transition: var(--transition-normal);
             z-index: -1;
         }
 
-        .btn:hover {
+        .btn:active { transform: scale(0.95); }
+        .btn:hover { color: #000; }
+        .btn:hover::after { height: 100%; }
+
+        .btn-solid {
+            background: var(--color-gold-pure);
             color: #000;
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+            font-weight: 700;
+            box-shadow: var(--shadow-gold-glow);
         }
+        .btn-solid:hover { background: #fff; box-shadow: 0 0 30px rgba(255,255,255,0.4); }
+        .btn-solid::after { display: none; }
 
-        .btn:hover::before {
-            width: 100%;
-        }
+        .btn-block { width: 100%; display: flex; }
 
-        .btn-fill {
-            background: var(--gold-primary);
-            color: #000;
-        }
-
-        .btn-fill:hover {
-            background: #fff;
-            border-color: #fff;
-        }
-
-        /* =========================================
-           3. LOADER DE ENTRADA
-           ========================================= */
-        #loader {
+        /* LOADER DE INICIO */
+        #app-loader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: #000;
             z-index: 9999;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
-            transition: opacity 0.8s ease-out, visibility 0.8s;
+            transition: opacity 0.8s ease, visibility 0.8s;
         }
 
-        .loader-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--gold-primary);
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--color-gold-pure);
+            animation: spin 1s ease-in-out infinite;
             margin-bottom: 20px;
-            animation: pulseGold 2s infinite;
         }
 
-        .loader-bar {
-            width: 200px;
-            height: 2px;
-            background: #222;
-            position: relative;
-            overflow: hidden;
+        .loader-text {
+            font-family: var(--font-display);
+            letter-spacing: 5px;
+            color: var(--color-gold-pure);
+            font-size: 0.8rem;
+            animation: pulse 2s infinite;
         }
 
-        .loader-progress {
-            position: absolute;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gold-primary);
-            animation: load 2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
 
-        @keyframes load {
-            0% { left: -100%; }
-            100% { left: 0%; }
-        }
-
-        @keyframes pulseGold {
-            0%, 100% { opacity: 0.5; filter: blur(2px); }
-            50% { opacity: 1; filter: blur(0px); text-shadow: 0 0 20px var(--gold-primary); }
-        }
-
-        /* =========================================
-           4. HEADER & NAV
-           ========================================= */
+        /* ====================================================================
+        3.0 HEADER & NAVIGATION (MOBILE FIRST)
+        ====================================================================
+        */
         header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
-            z-index: 1000;
-            background: rgba(2, 2, 2, 0.85);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-            transition: var(--transition-fast);
-        }
-
-        .nav-container {
+            height: var(--header-height);
+            padding: 0 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: var(--header-height);
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 2rem;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            z-index: 1000;
+            transition: transform 0.3s ease;
         }
 
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-            text-decoration: none;
+        header.hidden { transform: translateY(-100%); }
+
+        .brand-logo {
             display: flex;
             align-items: center;
             gap: 10px;
         }
         
-        .logo img {
-            height: 50px;
-            filter: invert(1) brightness(200%); /* Ajuste para logo negro sobre fondo negro */
-        }
+        .brand-logo img { height: 40px; filter: invert(1); }
+        .brand-text { font-family: var(--font-display); font-weight: 700; color: #fff; letter-spacing: 1px; font-size: 1.1rem; }
 
-        .logo span {
-            background: var(--gold-metallic);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 40px;
-        }
-
-        .nav-link {
-            color: var(--text-off-white);
-            text-decoration: none;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .header-actions { display: flex; gap: 20px; align-items: center; }
+        
+        .icon-btn {
             position: relative;
-            padding: 5px 0;
-            transition: var(--transition-fast);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--gold-primary);
-            transition: var(--transition-fast);
-        }
-
-        .nav-link:hover {
-            color: var(--gold-primary);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-icon {
+            font-size: 1.4rem;
             color: #fff;
-            font-size: 1.2rem;
             cursor: pointer;
-            transition: var(--transition-fast);
+            transition: color 0.3s;
+        }
+        .icon-btn:hover { color: var(--color-gold-pure); }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--color-error);
+            color: #fff;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+            transition: var(--transition-bounce);
+        }
+        .cart-count.active { opacity: 1; transform: scale(1); }
+
+        /* DRAWER MENU (LATERAL) */
+        .drawer-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            opacity: 0; visibility: hidden;
+            transition: var(--transition-normal);
+        }
+        .drawer-overlay.open { opacity: 1; visibility: visible; }
+
+        .drawer {
+            position: fixed; top: 0; height: 100%; width: 85%; max-width: 400px;
+            background: var(--color-bg-panel);
+            z-index: 2001;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .nav-icon:hover {
-            color: var(--gold-primary);
-            transform: scale(1.1);
-        }
+        .drawer-left { left: 0; transform: translateX(-100%); border-right: 1px solid #222; }
+        .drawer-right { right: 0; transform: translateX(100%); border-left: 1px solid #222; }
+        
+        .drawer.open { transform: translateX(0); }
 
-        /* Mobile Menu */
-        .hamburger {
-            display: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: var(--gold-primary);
+        .drawer-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 40px; border-bottom: 1px solid #222; padding-bottom: 20px;
         }
+        .drawer-title { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-gold-pure); }
+        .close-btn { font-size: 2rem; color: #666; cursor: pointer; }
 
-        /* =========================================
-           5. HERO SECTION
-           ========================================= */
-        .hero {
+        .nav-list a {
+            display: block; font-size: 1.8rem; font-family: var(--font-display);
+            margin-bottom: 25px; color: #fff; opacity: 0; transform: translateX(-20px);
+            transition: 0.3s;
+        }
+        
+        .drawer.open .nav-list a { opacity: 1; transform: translateX(0); }
+        /* Staggered animation generated manually via CSS */
+        .drawer.open .nav-list a:nth-child(1) { transition-delay: 0.1s; }
+        .drawer.open .nav-list a:nth-child(2) { transition-delay: 0.15s; }
+        .drawer.open .nav-list a:nth-child(3) { transition-delay: 0.2s; }
+        .drawer.open .nav-list a:nth-child(4) { transition-delay: 0.25s; }
+
+        /* ====================================================================
+        4.0 HERO SECTION (CINEMATIC)
+        ====================================================================
+        */
+        .hero-section {
+            position: relative;
             height: 100vh;
             width: 100%;
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            perspective: 1000px;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('front.jpg'); /* Usamos la camisa como textura de fondo oscura */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.15;
-            filter: grayscale(100%);
-            z-index: 1;
+        .hero-bg {
+            position: absolute; top: -10%; left: -10%; width: 120%; height: 120%;
+            background: url('front.jpg') center/cover no-repeat;
+            filter: brightness(0.4) contrast(1.2) grayscale(0.8);
+            transform: translateZ(-50px) scale(1);
+            animation: heroZoom 20s infinite alternate;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #020202);
-            z-index: 2;
+        @keyframes heroZoom { 
+            0% { transform: translateZ(-50px) scale(1); } 
+            100% { transform: translateZ(0) scale(1.1); } 
         }
 
         .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            max-width: 900px;
-            padding: 0 20px;
+            position: relative; z-index: 2; text-align: center; padding: 0 20px;
+            mix-blend-mode: normal;
         }
 
-        .hero-subtitle {
-            font-family: var(--font-alt);
-            font-size: 1.2rem;
-            letter-spacing: 0.5em;
-            color: var(--gold-primary);
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
             margin-bottom: 20px;
-            display: block;
-            animation: fadeInDown 1s ease-out 2.5s both;
+            color: var(--color-gold-light);
+            animation: slideDown 1s ease forwards;
         }
 
         .hero-title {
-            font-size: 6rem;
-            line-height: 1;
-            margin-bottom: 30px;
-            font-weight: 400;
+            font-size: clamp(3rem, 15vw, 6rem);
+            line-height: 0.9;
             color: #fff;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-        
-        .hero-title span {
-            display: block;
-            font-size: 2.5rem;
-            color: var(--text-gray);
-            font-family: var(--font-body);
-            font-weight: 300;
-            letter-spacing: 10px;
-            margin-top: 10px;
+            margin-bottom: 30px;
+            text-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
         }
 
-        .hero-cta {
-            margin-top: 50px;
-            animation: fadeInUp 1s ease-out 3s both;
+        .hero-actions {
+            opacity: 0;
+            animation: fadeUp 1s ease 0.6s forwards;
+            display: flex; flex-direction: column; gap: 15px; align-items: center;
         }
 
-        /* Marquee de Texto Infinito */
-        .marquee-container {
-            position: absolute;
-            bottom: 50px;
-            width: 100%;
-            z-index: 3;
-            overflow: hidden;
-            white-space: nowrap;
-            opacity: 0.5;
-            transform: rotate(-2deg);
-            pointer-events: none;
+        /* ====================================================================
+        5.0 SHOP SECTION (PRODUCT CARDS AVANZADAS)
+        ====================================================================
+        */
+        .section-container {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 30s linear infinite;
-        }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-subtitle { color: var(--color-gold-pure); font-family: var(--font-ui); letter-spacing: 4px; font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        .section-title { font-size: 2.5rem; color: #fff; text-transform: uppercase; }
 
-        .marquee-item {
-            font-family: var(--font-alt);
-            font-size: 4rem;
-            font-weight: 700;
-            color: transparent;
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-            margin-right: 50px;
-            text-transform: uppercase;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* =========================================
-           6. COLECCIÓN (PRODUCTOS)
-           ========================================= */
-        .collection-section {
-            background-color: var(--bg-deep);
-            position: relative;
-        }
-
-        .section-header {
-            margin-bottom: 80px;
-            text-align: center;
-        }
-
-        .section-title-deco {
-            font-size: 3rem;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 20px;
-        }
-
-        .section-title-deco::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 2px;
-            background: var(--gold-primary);
-        }
-
-        /* Grid de Productos */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
 
-        /* TARJETA DE PRODUCTO AVANZADA */
         .product-card {
-            background-color: transparent;
-            perspective: 1000px; /* Para efecto 3D */
-            cursor: pointer;
-        }
-
-        .card-inner {
-            background: var(--bg-card);
+            background: var(--color-bg-card);
             border: 1px solid #222;
-            padding: 20px;
-            transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.3s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            position: relative;
+            border-radius: var(--border-radius-sm);
             overflow: hidden;
+            position: relative;
+            transition: border-color 0.3s;
         }
+        
+        .product-card:hover { border-color: var(--color-gold-dim); }
 
-        .product-card:hover .card-inner {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-            border-color: var(--gold-dark);
-        }
-
-        .card-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--gold-primary);
-            color: #000;
-            padding: 5px 12px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            z-index: 10;
-            letter-spacing: 1px;
-        }
-
-        .card-image-wrapper {
+        .card-media {
             position: relative;
             width: 100%;
-            height: 400px;
-            overflow: hidden;
-            margin-bottom: 25px;
+            padding-top: 125%; /* Aspect Ratio 4:5 */
             background: #151515;
+            overflow: hidden;
         }
 
         .card-img {
-            width: 100%;
-            height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
-            transition: opacity 0.6s ease, transform 0.8s ease;
-        }
-
-        .card-img.back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-        }
-
-        /* Hover Reveal Back Image */
-        .product-card:hover .card-img.front { opacity: 0; transform: scale(1.05); }
-        .product-card:hover .card-img.back { opacity: 1; transform: scale(1.05); }
-
-        .card-details {
-            text-align: center;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card-category {
-            font-size: 0.75rem;
-            color: var(--gold-primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            font-family: var(--font-display);
-            color: #fff;
-            transition: color 0.3s;
+            transition: opacity 0.4s, transform 0.6s;
         }
         
-        .product-card:hover .card-title { color: var(--gold-primary); }
+        .img-hover { opacity: 0; transform: scale(1.1); }
+        .card-media:hover .img-main { opacity: 0; }
+        .card-media:hover .img-hover { opacity: 1; transform: scale(1); }
 
-        .card-price {
-            font-size: 1.2rem;
-            color: var(--text-off-white);
-            margin-bottom: 20px;
-            font-weight: 300;
+        .card-badge {
+            position: absolute; top: 10px; left: 10px;
+            background: var(--color-gold-pure); color: #000;
+            padding: 4px 10px; font-size: 0.7rem; font-weight: 700;
+            text-transform: uppercase; z-index: 10;
         }
 
-        .card-actions {
-            margin-top: auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
+        .wishlist-btn {
+            position: absolute; top: 10px; right: 10px;
+            width: 35px; height: 35px; border-radius: 50%;
+            background: rgba(0,0,0,0.5); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 10; transition: 0.3s;
         }
+        .wishlist-btn:hover { background: #fff; color: var(--color-error); }
 
-        .btn-card {
-            padding: 12px;
-            border: 1px solid #333;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-card:hover {
-            background: #fff;
-            color: #000;
-            border-color: #fff;
-        }
-
-        .btn-card.primary {
-            background: var(--gold-primary);
-            color: #000;
-            border-color: var(--gold-primary);
-            font-weight: 600;
-        }
-
-        .btn-card.primary:hover {
-            background: var(--gold-light);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
-
-        /* =========================================
-           7. SECCIONES INFORMATIVAS & BANNER
-           ========================================= */
-        .banner-parallax {
-            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('back.jpg');
-            background-attachment: fixed;
-            background-position: center;
-            background-size: cover;
-            height: 600px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin: 100px 0;
-        }
-
-        .banner-content h2 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .banner-content p {
-            font-size: 1.5rem;
-            max-width: 700px;
-            margin: 0 auto 40px;
-            color: var(--text-off-white);
-        }
-
-        /* Features Grid */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            background: #222; /* Líneas divisorias */
-            border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
-        }
-
-        .feature-box {
-            background: var(--bg-deep);
-            padding: 60px 40px;
-            text-align: center;
-            transition: background 0.4s;
-        }
-
-        .feature-box:hover {
-            background: #080808;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--gold-primary);
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .feature-text {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        /* =========================================
-           8. FOOTER MASIVO
-           ========================================= */
-        footer {
-            background: #050505;
-            padding: 100px 0 30px;
-            border-top: 1px solid #1a1a1a;
-            position: relative;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 60px;
-            margin-bottom: 80px;
-        }
-
-        .footer-brand p {
-            color: var(--text-gray);
-            margin: 20px 0;
-            font-size: 0.95rem;
-            max-width: 300px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-btn {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            border-radius: 50%;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-
-        .social-btn:hover {
-            border-color: var(--gold-primary);
-            color: var(--gold-primary);
-            transform: translateY(-3px);
-        }
-
-        .footer-heading {
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            color: #fff;
-            position: relative;
-            padding-left: 15px;
-        }
-
-        .footer-heading::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 5px;
-            height: 15px;
-            width: 3px;
-            background: var(--gold-primary);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: 0.3s;
-            font-size: 0.9rem;
-            display: inline-block;
-        }
-
-        .footer-links a:hover {
-            color: var(--gold-primary);
-            transform: translateX(5px);
-        }
-
-        /* Newsletter en Footer */
-        .newsletter-form {
-            position: relative;
-            margin-top: 20px;
-        }
-
-        .newsletter-input {
-            width: 100%;
-            padding: 15px;
-            background: #111;
-            border: 1px solid #222;
-            color: #fff;
-            font-family: var(--font-body);
-        }
-
-        .newsletter-btn {
-            margin-top: 10px;
-            width: 100%;
-            padding: 12px;
-            background: var(--gold-primary);
-            border: none;
-            color: #000;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .newsletter-btn:hover {
-            background: var(--gold-light);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #1a1a1a;
-            padding-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .copyright { color: #444; font-size: 0.8rem; }
+        .card-details { padding: 20px; }
         
-        /* =========================================
-           9. FLOATERS & EXTRAS
-           ========================================= */
+        .card-cat { color: #666; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; }
+        .card-name { font-family: var(--font-display); font-size: 1.2rem; color: #fff; margin: 5px 0 10px; }
+        
+        .card-price-row { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 1.1rem; color: var(--color-gold-pure); font-weight: 600; }
+        
+        .add-cart-btn {
+            background: transparent; border: 1px solid #333; color: #fff;
+            padding: 8px 12px; font-size: 0.8rem; cursor: pointer; transition: 0.3s;
+        }
+        .add-cart-btn:hover { background: #fff; color: #000; }
+
+        /* ====================================================================
+        6.0 CART DRAWER (ESTILOS DEL CARRITO)
+        ====================================================================
+        */
+        .cart-items-container {
+            flex-grow: 1; overflow-y: auto; padding: 20px 0;
+        }
+        
+        .empty-cart-msg { text-align: center; color: #666; margin-top: 50px; }
+
+        .cart-item {
+            display: flex; gap: 15px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #222;
+            animation: slideInRight 0.3s ease;
+        }
+        .cart-item img { width: 70px; height: 90px; object-fit: cover; border-radius: 4px; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-size: 0.9rem; color: #fff; margin-bottom: 5px; }
+        .cart-item-price { color: var(--color-gold-pure); font-size: 0.9rem; }
+        .cart-item-remove { color: var(--color-error); font-size: 0.8rem; margin-top: 5px; cursor: pointer; display: inline-block; }
+
+        .cart-footer { padding-top: 20px; border-top: 1px solid #333; }
+        .cart-total { display: flex; justify-content: space-between; font-size: 1.2rem; color: #fff; margin-bottom: 20px; }
+        
+        /* ====================================================================
+        7.0 FEATURES & FOOTER
+        ====================================================================
+        */
+        .feature-banner {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('back.jpg') fixed center/cover;
+            padding: 100px 20px; text-align: center;
+        }
+
+        .footer {
+            background: #050505; padding: 60px 20px 100px;
+            text-align: center; border-top: 1px solid #1a1a1a;
+        }
+        
+        .footer-logo { font-family: var(--font-display); font-size: 2rem; color: #fff; margin-bottom: 20px; display: block; }
+        .footer-links a { color: #666; margin: 0 10px; font-size: 0.9rem; }
+        .footer-social { margin: 30px 0; font-size: 1.5rem; }
+        .footer-social a { margin: 0 15px; color: #fff; }
+
+        /* ====================================================================
+        8.0 TOAST NOTIFICATIONS
+        ====================================================================
+        */
+        #toast-container {
+            position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%);
+            z-index: 3000; width: 90%; max-width: 400px; pointer-events: none;
+        }
+        
+        .toast {
+            background: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid var(--color-gold-pure);
+            color: #fff; padding: 15px 20px; margin-top: 10px;
+            border-radius: 4px; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            display: flex; align-items: center; gap: 15px;
+            opacity: 0; transform: translateY(20px);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: auto;
+        }
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.success { border-color: var(--color-success); }
+        .toast.error { border-color: var(--color-error); }
+
+        /* ====================================================================
+        9.0 FLOATING ELEMENTS
+        ====================================================================
+        */
         .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            z-index: 999;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            position: fixed; bottom: 30px; right: 20px;
+            width: 60px; height: 60px;
+            background: #25D366; color: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: 2999; animation: pulseGreen 2s infinite;
         }
+        @keyframes pulseGreen { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.4); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
-        .whatsapp-float:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 0 0 20px #25D366;
-        }
-
-        /* Tooltip del WhatsApp */
-        .whatsapp-float::before {
-            content: 'Compra Directa';
-            position: absolute;
-            right: 70px;
-            background: #fff;
-            color: #000;
-            padding: 5px 15px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            opacity: 0;
-            transition: 0.3s;
-            pointer-events: none;
-            white-space: nowrap;
-        }
-
-        .whatsapp-float:hover::before {
-            opacity: 1;
-            right: 80px;
-        }
-
-        /* =========================================
-           10. MEDIA QUERIES (RESPONSIVE)
-           ========================================= */
-        @media (max-width: 1024px) {
-            .hero-title { font-size: 4rem; }
-            .features-grid { grid-template-columns: 1fr; }
-            .footer-content { grid-template-columns: 1fr 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Aquí iría JS para toggle menu */
-            .hamburger { display: block; }
-            .hero-title { font-size: 3rem; }
-            .hero-title span { font-size: 1.5rem; }
-            .footer-content { grid-template-columns: 1fr; text-align: center; }
-            .footer-heading::before { display: none; }
-            .footer-heading { padding-left: 0; }
-            .product-card { max-width: 100%; }
-        }
+        /* ANIMACIONES GENÉRICAS */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
 
     </style>
 </head>
-<body id="top">
+<body>
 
-    <div id="loader">
-        <div class="loader-logo">AURASAINT</div>
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
-        <p style="margin-top: 10px; color: #444; font-size: 0.8rem; letter-spacing: 2px;">CARGANDO EXPERIENCIA...</p>
+    <div id="app-loader">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">AURASAINT v2.0</div>
     </div>
 
-    <header id="header">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="logo.jpg" alt="Logo AuraSaint">
-            </a>
+    <div id="toast-container"></div>
 
-            <nav class="nav-links">
-                <a href="#inicio" class="nav-link">Home</a>
-                <a href="#coleccion" class="nav-link">Shop</a>
-                <a href="#concepto" class="nav-link">Concept</a>
-                <a href="#contacto" class="nav-link">Contact</a>
-            </nav>
+    <div class="drawer-overlay" id="menuOverlay" onclick="closeDrawers()"></div>
+    
+    <aside class="drawer drawer-left" id="menuDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">MENU</span>
+            <i class="fas fa-times close-btn" onclick="toggleMenu()"></i>
+        </div>
+        <nav class="nav-list">
+            <a href="#hero" onclick="closeDrawers()">INICIO</a>
+            <a href="#shop" onclick="closeDrawers()">COLECCIÓN</a>
+            <a href="#concept" onclick="closeDrawers()">CONCEPTO</a>
+            <a href="#contact" onclick="closeDrawers()">CONTACTO</a>
+        </nav>
+        <div style="margin-top: auto; color: #444; font-size: 0.8rem;">
+            AURA SAINT © 2026<br>NOGALES, SONORA
+        </div>
+    </aside>
 
-            <div class="nav-icons">
-                <i class="fas fa-search nav-icon"></i>
-                <i class="fas fa-user nav-icon"></i>
-                <i class="fas fa-shopping-bag nav-icon"></i>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
-                </div>
+    <aside class="drawer drawer-right" id="cartDrawer">
+        <div class="drawer-header">
+            <span class="drawer-title">TU BOLSA <span class="text-gold" id="cartHeaderCount">(0)</span></span>
+            <i class="fas fa-times close-btn" onclick="toggleCart()"></i>
+        </div>
+        <div class="cart-items-container" id="cartItems">
+            <div class="empty-cart-msg">
+                <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
+                <p>Tu bolsa está vacía.</p>
+                <button class="btn" style="margin-top: 20px;" onclick="closeDrawers(); window.location.href='#shop'">Ir a Comprar</button>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total Estimado:</span>
+                <span id="cartTotal">$0.00 MXN</span>
+            </div>
+            <button class="btn btn-solid btn-block" onclick="checkoutWhatsApp()">
+                <i class="fab fa-whatsapp" style="margin-right: 10px;"></i> Completar Pedido
+            </button>
+        </div>
+    </aside>
+
+    <header id="mainHeader">
+        <div class="icon-btn" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        
+        <a href="#" class="brand-logo">
+            <img src="logo.jpg" alt="Aurasaint Logo">
+            <span class="brand-text">AURASAINT</span>
+        </a>
+
+        <div class="header-actions">
+            <div class="icon-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <div class="cart-count" id="cartBadge">0</div>
             </div>
         </div>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="hero-overlay"></div>
+    <main>
         
-        <div class="hero-content">
-            <span class="hero-subtitle" data-aos="fade-down">ESTABLISHED 2026</span>
-            <h1 class="hero-title" data-aos="zoom-in" data-aos-delay="300">
-                FAITH <span class="gold-text">OVER</span> FEAR
-                <span>THE PREMIUM COLLECTION</span>
-            </h1>
-            <div class="hero-cta">
-                <a href="#coleccion" class="btn">Explorar Drop</a>
-                <a href="https://wa.me/526311295519?text=Hola,%20quiero%20ver%20el%20video%20de%20la%20nueva%20colección" class="btn btn-fill" style="margin-left: 20px;">Ver Lookbook</a>
+        <section id="hero" class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="hero-content">
+                <span class="hero-tag">NUEVA TEMPORADA 2026</span>
+                <h1 class="hero-title">FAITH<br><span class="text-gradient">OVER</span><br>FEAR</h1>
+                <div class="hero-actions">
+                    <a href="#shop" class="btn btn-solid">VER DROP</a>
+                    <a href="#concept" class="btn" style="border-color: rgba(255,255,255,0.3); color: #fff;">LOOKBOOK</a>
+                </div>
             </div>
-        </div>
+        </section>
 
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <span class="marquee-item">AURASAINT</span>
-                <span class="marquee-item">LUXURY STREETWEAR</span>
-                <span class="marquee-item">FAITH OVER FEAR</span>
-                <span class="marquee-item">NOGALES</span>
-                <span class="marquee-item">WORLDWIDE SHIPPING</span>
-                <span class="marquee-item">AURASAINT</span>
-                <span class="marquee-item">LIMITED EDITION</span>
-            </div>
-            <div class="marquee-content" aria-hidden="true">
-                <span class="marquee-item">AURASAINT</span>
-                <span class="marquee-item">LUXURY STREETWEAR</span>
-                <span class="marquee-item">FAITH OVER FEAR</span>
-                <span class="marquee-item">NOGALES</span>
-                <span class="marquee-item">WORLDWIDE SHIPPING</span>
-                <span class="marquee-item">AURASAINT</span>
-                <span class="marquee-item">LIMITED EDITION</span>
-            </div>
-        </div>
-    </section>
-
-    <section id="coleccion" class="collection-section section-padding">
-        <div class="container">
+        <section id="shop" class="section-container">
             <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title-deco">Último Drop</h2>
-                <p style="color: #888; margin-top: 20px;">Edición Limitada. Calidad Superior. Diseñado en México.</p>
+                <span class="section-subtitle">LIMITED EDITION</span>
+                <h2 class="section-title">LATEST <span class="text-gold">DROP</span></h2>
             </div>
 
             <div class="product-grid">
                 
-                <article class="product-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="card-inner">
-                        <div class="card-badge">Best Seller</div>
-                        <div class="card-image-wrapper">
-                            <img src="front.jpg" alt="Tee Front" class="card-img front">
-                            <img src="back.jpg" alt="Tee Back" class="card-img back">
+                <article class="product-card" data-aos="fade-up">
+                    <div class="card-media">
+                        <span class="card-badge">BEST SELLER</span>
+                        <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+                        <img src="front.jpg" class="card-img img-main" alt="Front">
+                        <img src="back.jpg" class="card-img img-hover" alt="Back">
+                    </div>
+                    <div class="card-details">
+                        <span class="card-cat">T-SHIRTS</span>
+                        <h3 class="card-name">OVERSIZE "FAITH" TEE</h3>
+                        <div class="card-price-row">
+                            <span class="price">$650 MXN</span>
+                            <button class="add-cart-btn" onclick="addToCart('Oversize Faith Tee', 650, 'front.jpg')">
+                                + AGREGAR
+                            </button>
                         </div>
-                        <div class="card-details">
-                            <div>
-                                <p class="card-category">T-Shirts</p>
-                                <h3 class="card-title">Oversize "Faith" Tee</h3>
-                                <p class="card-price">$650.00 MXN</p>
-                            </div>
-                            <div class="card-actions">
-                                <a href="https://wa.me/526311295519?text=Qué%20tal%20AuraSaint,%20me%20interesa%20la%20Oversize%20Faith%20Tee.%20¿Tienen%20tallas?" target="_blank" class="btn-card primary">
-                                    <i class="fab fa-whatsapp"></i> Comprar Ahora
-                                </a>
-                                <a href="mailto:menelchvz23@gmail.com?subject=Info%20Oversize%20Faith&body=Hola,%20quisiera%20más%20detalles%20de%20las%20tallas%20y%20materiales." class="btn-card">
-                                    <i class="fas fa-info-circle"></i> Detalles
-                                </a>
-                            </div>
+                    </div>
+                </article>
+
+                <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-media">
+                        <span class="card-badge" style="background: #fff;">NEW</span>
+                        <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+                        <img src="back.jpg" class="card-img img-main" style="filter: brightness(0.8);" alt="Hoodie">
+                        <img src="front.jpg" class="card-img img-hover" alt="Hoodie detail">
+                    </div>
+                    <div class="card-details">
+                        <span class="card-cat">HOODIES</span>
+                        <h3 class="card-name">SERAPHIM HEAVY HOODIE</h3>
+                        <div class="card-price-row">
+                            <span class="price">$1,200 MXN</span>
+                            <button class="add-cart-btn" onclick="addToCart('Seraphim Heavy Hoodie', 1200, 'back.jpg')">
+                                + AGREGAR
+                            </button>
                         </div>
                     </div>
                 </article>
 
                 <article class="product-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="card-inner">
-                        <div class="card-badge" style="background: #fff; color: #000;">New Arrival</div>
-                        <div class="card-image-wrapper">
-                            <img src="back.jpg" alt="Hoodie Back" class="card-img front" style="filter: contrast(1.2);">
-                            <img src="front.jpg" alt="Hoodie Front" class="card-img back">
-                        </div>
-                        <div class="card-details">
-                            <div>
-                                <p class="card-category">Hoodies</p>
-                                <h3 class="card-title">Seraphim Heavy Hoodie</h3>
-                                <p class="card-price">$1,200.00 MXN</p>
-                            </div>
-                            <div class="card-actions">
-                                <a href="https://wa.me/526311295519?text=Hola,%20quiero%20reservar%20la%20Seraphim%20Heavy%20Hoodie%20antes%20de%20que%20se%20agote." target="_blank" class="btn-card primary">
-                                    <i class="fab fa-whatsapp"></i> Pre-ordenar
-                                </a>
-                                <a href="#" class="btn-card"><i class="fas fa-eye"></i> Vista Rápida</a>
-                            </div>
+                    <div class="card-media">
+                        <div class="wishlist-btn"><i class="far fa-heart"></i></div>
+                        <img src="front.jpg" class="card-img img-main" style="transform: scale(1.5); object-position: bottom;" alt="Joggers">
+                        <img src="back.jpg" class="card-img img-hover" style="transform: scale(1.5); object-position: bottom;" alt="Joggers">
+                    </div>
+                    <div class="card-details">
+                        <span class="card-cat">BOTTOMS</span>
+                        <h3 class="card-name">STREET SAINT JOGGERS</h3>
+                        <div class="card-price-row">
+                            <span class="price">$950 MXN</span>
+                            <button class="add-cart-btn" onclick="addToCart('Street Saint Joggers', 950, 'front.jpg')">
+                                + AGREGAR
+                            </button>
                         </div>
                     </div>
                 </article>
 
-                <article class="product-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="card-inner">
-                        <div class="card-image-wrapper">
-                            <img src="front.jpg" alt="Joggers" class="card-img front" style="object-position: bottom; transform: scale(1.5);">
-                            <img src="front.jpg" alt="Joggers Back" class="card-img back" style="object-position: bottom; transform: scale(1.5);">
-                        </div>
-                        <div class="card-details">
-                            <div>
-                                <p class="card-category">Bottoms</p>
-                                <h3 class="card-title">Street Saint Joggers</h3>
-                                <p class="card-price">$950.00 MXN</p>
-                            </div>
-                            <div class="card-actions">
-                                <a href="https://wa.me/526311295519?text=Interesado%20en%20los%20Street%20Saint%20Joggers.%20¿Qué%20colores%20hay?" target="_blank" class="btn-card primary">
-                                    <i class="fab fa-whatsapp"></i> Comprar Ahora
-                                </a>
-                                <a href="#" class="btn-card"><i class="fas fa-eye"></i> Vista Rápida</a>
-                            </div>
+                 <article class="product-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-media">
+                        <span class="card-badge" style="background: #333; color: #fff;">SOLD OUT</span>
+                        <img src="logo.jpg" class="card-img img-main" style="padding: 20px; object-fit: contain;" alt="Cap">
+                        <img src="logo.jpg" class="card-img img-hover" style="padding: 20px; object-fit: contain; transform: scale(1.1);" alt="Cap">
+                    </div>
+                    <div class="card-details">
+                        <span class="card-cat">ACCESSORIES</span>
+                        <h3 class="card-name">AURA TRUCKER CAP</h3>
+                        <div class="card-price-row">
+                            <span class="price">$450 MXN</span>
+                            <button class="add-cart-btn" style="opacity: 0.5; cursor: not-allowed;">AGOTADO</button>
                         </div>
                     </div>
                 </article>
 
             </div>
+        </section>
+
+        <section id="concept" class="feature-banner">
+            <div data-aos="zoom-in">
+                <i class="fas fa-church text-gold" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                <h2 style="font-size: 2.5rem; color: #fff; margin-bottom: 15px;">NO PARA TODOS</h2>
+                <p style="max-width: 600px; margin: 0 auto; color: #ccc;">
+                    Diseñamos para los que entienden que el estilo es una extensión del espíritu. 
+                    Calidad que se siente. Mensajes que pesan.
+                </p>
+            </div>
+        </section>
+
+        <section id="contact" class="section-container text-center">
+            <h2 class="section-title">UNETE AL <span class="text-gold">CLAN</span></h2>
+            <p style="color: #666; margin-bottom: 30px;">Recibe acceso anticipado a los drops.</p>
             
-            <div class="text-center" style="margin-top: 60px;">
-                <a href="#" class="btn">Ver Catálogo Completo</a>
-            </div>
+            <form onsubmit="handleSubscribe(event)" style="max-width: 400px; margin: 0 auto; display: flex; gap: 10px;">
+                <input type="email" placeholder="Tu Email" required style="flex: 1; padding: 15px; background: #222; color: #fff; border: 1px solid #333;">
+                <button type="submit" class="btn btn-solid" style="padding: 0 20px;"><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <a href="#" class="footer-logo">AURASAINT</a>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
         </div>
-    </section>
-
-    <section id="concepto" class="banner-parallax">
-        <div class="banner-content" data-aos="fade-up">
-            <h2>NOT JUST CLOTHING</h2>
-            <p>Una declaración de principios. En un mundo de ruido, elegimos la fe. Diseños atemporales para aquellos que caminan sin miedo.</p>
-            <a href="mailto:menelchvz23@gmail.com?subject=Colaboración%20AuraSaint&body=Hola%20equipo,%20soy%20creador%20de%20contenido%20y%20me%20gustaría%20colaborar%20con%20su%20marca." class="btn btn-fill">Únete al Movimiento</a>
+        <div class="footer-links">
+            <a href="#">Términos</a> | <a href="#">Envíos</a> | <a href="#">Privacidad</a>
         </div>
-    </section>
-
-    <section class="features">
-        <div class="features-grid">
-            <div class="feature-box">
-                <i class="fas fa-gem feature-icon"></i>
-                <h3 class="feature-title">Calidad Premium</h3>
-                <p class="feature-text">Algodón Heavyweight peinado. Costuras reforzadas y estampados de alta densidad que duran años.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-shipping-fast feature-icon"></i>
-                <h3 class="feature-title">Envío Express</h3>
-                <p class="feature-text">Envíos asegurados a todo México. Recibe tu pedido en 2-5 días hábiles con tracking en tiempo real.</p>
-            </div>
-            <div class="feature-box">
-                <i class="fas fa-shield-alt feature-icon"></i>
-                <h3 class="feature-title">Compra Segura</h3>
-                <p class="feature-text">Tus datos están protegidos. Garantía de satisfacción o te devolvemos tu dinero. Sin preguntas.</p>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contacto">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <img src="logo.jpg" alt="Aurasaint" style="height: 40px; filter: invert(1);">
-                        <span>AURASAINT</span>
-                    </a>
-                    <p>Redefiniendo el streetwear desde Nogales, Sonora. Moda con propósito para una generación que cree.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-btn"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-
-                <div class="footer-links">
-                    <h4 class="footer-heading">Explorar</h4>
-                    <ul>
-                        <li><a href="#">New Arrivals</a></li>
-                        <li><a href="#">Best Sellers</a></li>
-                        <li><a href="#">Hoodies</a></li>
-                        <li><a href="#">Accesorios</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-links">
-                    <h4 class="footer-heading">Soporte</h4>
-                    <ul>
-                        <li><a href="#">Rastrear Pedido</a></li>
-                        <li><a href="#">Guía de Tallas</a></li>
-                        <li><a href="#">Envíos y Devoluciones</a></li>
-                        <li><a href="#">FAQs</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-newsletter">
-                    <h4 class="footer-heading">AuraSaint VIP</h4>
-                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">Suscríbete para drops exclusivos y descuentos secretos.</p>
-                    <form class="newsletter-form" action="#" onsubmit="event.preventDefault(); alert('¡Bienvenido al club VIP!');">
-                        <input type="email" placeholder="Tu correo electrónico" class="newsletter-input" required>
-                        <button type="submit" class="newsletter-btn">Suscribirse</button>
-                    </form>
-                    <div style="margin-top: 20px;">
-                        <a href="mailto:menelchvz23@gmail.com?subject=Consulta%20General%20Cliente&body=Hola%20equipo%20AuraSaint,%0A%0AEstoy%20interesado%20en%20sus%20productos%20y%20quisiera%20saber%20más%20sobre:%0A-%20Disponibilidad%20de%20stock%0A-%20Tiempos%20de%20envío%20a%20mi%20ciudad%0A%0AGracias." style="color: var(--gold-primary); text-decoration: none; font-size: 0.9rem;">
-                            <i class="fas fa-envelope"></i> menelchvz23@gmail.com
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2026 AuraSaint. Todos los derechos reservados.</p>
-                <div class="payment-methods" style="color: #666; font-size: 1.5rem;">
-                    <i class="fab fa-cc-visa" style="margin-left: 10px;"></i>
-                    <i class="fab fa-cc-mastercard" style="margin-left: 10px;"></i>
-                    <i class="fab fa-cc-amex" style="margin-left: 10px;"></i>
-                    <i class="fab fa-paypal" style="margin-left: 10px;"></i>
-                </div>
-            </div>
-        </div>
+        <p style="color: #444; margin-top: 30px; font-size: 0.8rem;">
+            Hecho con <i class="fas fa-bolt text-gold"></i> por Agencia UVPrisma.
+        </p>
     </footer>
 
-    <a href="https://wa.me/526311295519?text=¡Qué%20onda!%20Vengo%20de%20la%20web%20y%20quiero%20armar%20un%20outfit%20AuraSaint%20bien%20cabrón.%20¿Qué%20hay%20disponible?" class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+    <a href="https://wa.me/526311295519" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. Inicializar animaciones AOS
-        AOS.init({
-            duration: 1000,
-            once: true,
-            offset: 100
-        });
+        /* ====================================================================
+        CORE JAVASCRIPT LOGIC
+        ====================================================================
+        */
 
-        // 2. Loader Logic
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
+        // 1. INICIALIZACIÓN
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animaciones
+            AOS.init({ duration: 800, once: true });
+            
+            // Remover Loader
             setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-            }, 1500); // 1.5 segundos de carga simulada para efecto premium
+                document.getElementById('app-loader').style.opacity = '0';
+                document.getElementById('app-loader').style.visibility = 'hidden';
+            }, 1500);
+
+            renderCart();
         });
 
-        // 3. Header Scroll Effect
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.style.padding = '10px 0';
-                header.style.background = 'rgba(0,0,0,0.95)';
+        // 2. STATE MANAGEMENT (CARRITO)
+        let cart = [];
+        
+        // 3. UI CONTROLLERS
+        function toggleMenu() {
+            const drawer = document.getElementById('menuDrawer');
+            const overlay = document.getElementById('menuOverlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('open');
+            
+            // Si abrimos menú, cerramos carrito si está abierto
+            if(document.getElementById('cartDrawer').classList.contains('open')) toggleCart();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cartDrawer');
+            const overlay = document.getElementById('menuOverlay');
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('open');
+            
+            // Si abrimos carrito, cerramos menú si está abierto
+            if(document.getElementById('menuDrawer').classList.contains('open')) toggleMenu();
+        }
+
+        function closeDrawers() {
+            document.getElementById('menuDrawer').classList.remove('open');
+            document.getElementById('cartDrawer').classList.remove('open');
+            document.getElementById('menuOverlay').classList.remove('open');
+        }
+
+        // 4. TOAST SYSTEM
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            container.appendChild(toast);
+            
+            // Animación Entrada
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Auto eliminar
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // 5. CART LOGIC
+        function addToCart(title, price, img) {
+            cart.push({ title, price, img, id: Date.now() });
+            updateCartUI();
+            showToast(`${title} agregado`, 'success');
+            
+            // Efecto vibración en móvil
+            if (navigator.vibrate) navigator.vibrate(50);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('cartBadge');
+            const headerCount = document.getElementById('cartHeaderCount');
+            const container = document.getElementById('cartItems');
+            const totalEl = document.getElementById('cartTotal');
+            
+            // Badge
+            badge.innerText = cart.length;
+            headerCount.innerText = `(${cart.length})`;
+            if(cart.length > 0) badge.classList.add('active');
+            else badge.classList.remove('active');
+
+            // Items Render
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart-msg">
+                        <i class="fas fa-shopping-bag" style="font-size: 3rem; margin-bottom: 20px; opacity: 0.3;"></i>
+                        <p>Tu bolsa está vacía.</p>
+                        <button class="btn" style="margin-top: 20px;" onclick="closeDrawers(); window.location.href='#shop'">Ir a Comprar</button>
+                    </div>`;
+                totalEl.innerText = "$0.00 MXN";
             } else {
-                header.style.padding = '20px 0';
-                header.style.background = 'rgba(2,2,2,0.85)';
-            }
-        });
-
-        // 4. Smooth Scroll para enlaces internos
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+                let html = '';
+                let total = 0;
+                
+                cart.forEach(item => {
+                    total += item.price;
+                    html += `
+                    <div class="cart-item">
+                        <img src="${item.img}" alt="Product">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.title}</div>
+                            <div class="cart-item-price">$${item.price.toLocaleString()} MXN</div>
+                            <div class="cart-item-remove" onclick="removeFromCart(${item.id})">Eliminar</div>
+                        </div>
+                    </div>`;
                 });
-            });
-        });
-
-        // 5. Efecto Tilt 3D en Tarjetas (Vanilla JS)
-        const cards = document.querySelectorAll('.product-card');
-
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const cardInner = card.querySelector('.card-inner');
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
                 
-                // Calcular rotación basada en posición del mouse
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = ((y - centerY) / centerY) * -5; // Max 5 deg
-                const rotateY = ((x - centerX) / centerX) * 5;
+                container.innerHTML = html;
+                totalEl.innerText = `$${total.toLocaleString()} MXN`;
+            }
+        }
 
-                cardInner.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            });
+        function renderCart() {
+            updateCartUI();
+        }
 
-            card.addEventListener('mouseleave', () => {
-                const cardInner = card.querySelector('.card-inner');
-                cardInner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        // 6. CHECKOUT VIA WHATSAPP
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                showToast('Agrega productos primero', 'error');
+                return;
+            }
+
+            let msg = "¡Hola Aurasaint! Quiero finalizar mi pedido:%0A%0A";
+            let total = 0;
+            
+            cart.forEach(item => {
+                msg += `- ${item.title} ($${item.price})%0A`;
+                total += item.price;
             });
+            
+            msg += `%0A*TOTAL: $${total.toLocaleString()} MXN*`;
+            msg += "%0A%0AQuedo pendiente para el pago y envío.";
+            
+            window.open(`https://wa.me/526311295519?text=${msg}`, '_blank');
+        }
+
+        // 7. SUBSCRIPTION FORM
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const input = e.target.querySelector('input');
+            if(input.value) {
+                showToast('¡Bienvenido al Clan!', 'success');
+                input.value = '';
+            }
+        }
+
+        // 8. HEADER SCROLL EFFECT
+        let lastScroll = 0;
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll <= 0) {
+                header.classList.remove('hidden');
+                header.style.background = 'rgba(0,0,0,0.8)';
+            } else if (currentScroll > lastScroll && currentScroll > 100) {
+                // Scroll Down
+                header.classList.add('hidden');
+            } else {
+                // Scroll Up
+                header.classList.remove('hidden');
+                header.style.background = 'rgba(0,0,0,0.95)';
+            }
+            lastScroll = currentScroll;
         });
 
     </script>
