@@ -11,11 +11,14 @@
            1. PREMIUM DESIGN SYSTEM & VARIABLES
            ========================================================================== */
         :root {
-            /* Lakers Palette */
+            /* Lakers Palette + Premium Gold */
             --clr-purple: #552583;
             --clr-purple-light: #7a3bbb;
             --clr-purple-dark: #3a1959;
             --clr-purple-glow: rgba(85, 37, 131, 0.4);
+            
+            --clr-gold: #D4AF37; /* Metallic Premium Gold */
+            --clr-dark-grey: #1a1a1a; /* Background for split marquee */
             
             --clr-black: #030303;
             --clr-black-surface: #0a0a0a;
@@ -59,7 +62,7 @@
 
         html {
             font-size: 16px;
-            scroll-behavior: auto; /* Handled by JS for smoothness */
+            scroll-behavior: auto;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -70,7 +73,7 @@
             color: var(--clr-white);
             overflow-x: hidden;
             line-height: 1.6;
-            cursor: none; /* Custom cursor applied */
+            cursor: none;
         }
 
         img { max-width: 100%; height: auto; display: block; }
@@ -97,9 +100,7 @@
             pointer-events: none; transition: transform 0.1s ease-out, width 0.2s, height 0.2s;
         }
         body:hover .cursor-dot { opacity: 1; }
-        a:hover ~ .cursor-dot, button:hover ~ .cursor-dot {
-            width: 0; height: 0;
-        }
+        a:hover ~ .cursor-dot, button:hover ~ .cursor-dot { width: 0; height: 0; }
         a:hover ~ .cursor-outline, button:hover ~ .cursor-outline {
             width: 60px; height: 60px; background-color: var(--clr-purple-glow); border-color: transparent;
         }
@@ -107,7 +108,6 @@
         /* ==========================================================================
            3. ANIMATIONS & SCROLL REVEALS
            ========================================================================== */
-        /* Intersection Observer Reveal Classes */
         .reveal-up {
             opacity: 0; transform: translateY(60px);
             transition: all 1s var(--ease-out-expo);
@@ -200,24 +200,9 @@
             margin-top: var(--space-6); font-size: 1rem; letter-spacing: 0.4em;
             text-transform: uppercase; color: var(--clr-purple-light);
         }
-        .scroll-indicator {
-            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-            display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 10;
-            opacity: 0.5;
-        }
-        .scroll-line {
-            width: 1px; height: 60px; background: linear-gradient(to bottom, var(--clr-white), transparent);
-            animation: scroll-line-anim 2s infinite;
-        }
-        @keyframes scroll-line-anim {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            50.1% { transform: scaleY(1); transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
 
         /* ==========================================================================
-           6. INFINITE MARQUEE (The Transition Bridge)
+           6. HORIZONTAL MARQUEE (Top Bridge)
            ========================================================================== */
         .marquee-section {
             width: 100%; background-color: var(--clr-purple); color: var(--clr-white);
@@ -234,7 +219,7 @@
         .marquee-text span { color: var(--clr-black); margin: 0 20px; }
 
         /* ==========================================================================
-           7. BRAND MANIFESTO
+           7. BRAND MANIFESTO (PROVERBIO)
            ========================================================================== */
         .manifesto-section {
             padding: var(--space-40) var(--space-8);
@@ -243,8 +228,8 @@
             text-align: center; position: relative;
         }
         .manifesto-text {
-            max-width: 800px; font-size: clamp(1.5rem, 4vw, 3rem);
-            line-height: 1.3; font-weight: 300; color: var(--clr-white-off);
+            max-width: 900px; font-size: clamp(1.5rem, 4vw, 2.5rem);
+            line-height: 1.4; font-weight: 300; color: var(--clr-white-off);
         }
         .manifesto-text strong {
             font-family: var(--font-display); color: var(--clr-purple-light);
@@ -257,15 +242,13 @@
         .split-section {
             display: flex; flex-direction: row; min-height: 100vh;
             width: 100%; position: relative; background-color: var(--clr-black);
+            overflow: hidden;
         }
-        .split-divider {
-            position: absolute; top: 0; bottom: 0; left: 50%; width: 1px;
-            background: rgba(85, 37, 131, 0.3); transform: translateX(-50%); z-index: 10;
-        }
+        
         .split-side {
             flex: 1; padding: var(--space-24) var(--space-8);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            position: relative; overflow: hidden; transition: flex var(--transition-slow);
+            position: relative; transition: flex var(--transition-slow);
         }
         
         .side-black { background-color: var(--clr-black-elevated); color: var(--clr-white); }
@@ -288,7 +271,6 @@
         }
         .side-black .product-img { box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
         .side-white .product-img { box-shadow: 0 30px 60px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05); }
-        
         .img-back { transform: rotateY(180deg); }
 
         /* Typography & Actions inside Split */
@@ -327,12 +309,61 @@
         .btn-info:hover { color: var(--clr-purple); }
 
         /* ==========================================================================
-           9. FOOTER & CONTACT
+           9. THE GOLD INFINITE MARQUEE (SPLIT DIVIDER)
+           ========================================================================== */
+        .split-divider-marquee {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 60px;
+            height: 100%;
+            background-color: var(--clr-dark-grey); /* Dark Grey */
+            transform: translateX(-50%);
+            z-index: 20;
+            overflow: hidden;
+            border-left: 1px solid rgba(255,255,255,0.05);
+            border-right: 1px solid rgba(0,0,0,0.2);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        
+        .marquee-rotater {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            width: 300vh; /* Extremely long to cover any height when rotated */
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vertical-marquee-track {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+        
+        .vertical-marquee-text {
+            color: var(--clr-gold); /* Gold */
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding-right: 50px;
+        }
+        .vertical-marquee-text span {
+            color: rgba(255, 255, 255, 0.3);
+            margin: 0 20px;
+        }
+
+        /* ==========================================================================
+           10. FOOTER & CONTACT
            ========================================================================== */
         .footer {
             background-color: var(--clr-black); padding: var(--space-24) var(--space-8) var(--space-8);
             border-top: 1px solid var(--clr-black-elevated); display: flex; flex-direction: column;
-            align-items: center; text-align: center; position: relative;
+            align-items: center; text-align: center; position: relative; z-index: 10;
         }
         .footer-logo-img { max-width: 120px; filter: grayscale(100%) brightness(200%); margin-bottom: var(--space-8); }
         
@@ -363,7 +394,7 @@
         }
 
         /* ==========================================================================
-           10. MODALS
+           11. MODALS
            ========================================================================== */
         .modal-wrapper {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -391,12 +422,31 @@
         .modal-text strong { color: var(--clr-white); }
 
         /* ==========================================================================
-           11. RESPONSIVE DESIGN
+           12. RESPONSIVE DESIGN (MÓVILES, IPADS)
            ========================================================================== */
         @media (max-width: 1024px) {
             .split-section { flex-direction: column; }
-            .split-divider { width: 100%; height: 1px; top: 50%; left: 0; transform: translateY(-50%); }
             .split-side { min-height: 80vh; }
+            
+            /* The vertical marquee turns horizontal automatically! */
+            .split-divider-marquee {
+                width: 100%;
+                height: 50px;
+                top: 50%;
+                left: 0;
+                transform: translateY(-50%);
+                border-top: 1px solid rgba(255,255,255,0.05);
+                border-bottom: 1px solid rgba(0,0,0,0.5);
+                border-left: none;
+                border-right: none;
+            }
+            .marquee-rotater {
+                transform: translate(-50%, -50%) rotate(0deg); /* No rotation on mobile */
+                width: 200vw;
+                height: 50px;
+            }
+            .vertical-marquee-text { font-size: 1.2rem; }
+            
             .footer-legal { flex-direction: column; gap: var(--space-4); }
         }
         
@@ -406,6 +456,7 @@
             .brand-logo { font-size: 1.8rem; }
             .manifesto-text { font-size: 1.5rem; }
             .product-card { max-width: 320px; }
+            
             /* Hide custom cursor on mobile touch devices */
             .cursor-dot, .cursor-outline { display: none; }
             body, a, button { cursor: auto; }
@@ -435,37 +486,47 @@
             </h1>
             <p class="hero-subtitle">Premium Collection</p>
         </div>
-
-        <div class="scroll-indicator reveal-up">
-            <span style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;">Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
     </section>
 
-    <!-- Infinite Marquee (Transition Bridge) -->
+    <!-- Infinite Marquee (Top Bridge) -->
     <div class="marquee-section">
         <div class="marquee-content">
             <div class="marquee-text">
-                LAKERS PALETTE EDITION <span>//</span> NO FEAR <span>//</span> PREMIUM HEAVYWEIGHT FABRIC <span>//</span>
-                LAKERS PALETTE EDITION <span>//</span> NO FEAR <span>//</span> PREMIUM HEAVYWEIGHT FABRIC <span>//</span>
+                LAKERS PALETTE EDITION <span>//</span> THE PREMIUM CUT <span>//</span> HEAVYWEIGHT FABRIC <span>//</span>
+                LAKERS PALETTE EDITION <span>//</span> THE PREMIUM CUT <span>//</span> HEAVYWEIGHT FABRIC <span>//</span>
             </div>
             <div class="marquee-text">
-                LAKERS PALETTE EDITION <span>//</span> NO FEAR <span>//</span> PREMIUM HEAVYWEIGHT FABRIC <span>//</span>
-                LAKERS PALETTE EDITION <span>//</span> NO FEAR <span>//</span> PREMIUM HEAVYWEIGHT FABRIC <span>//</span>
+                LAKERS PALETTE EDITION <span>//</span> THE PREMIUM CUT <span>//</span> HEAVYWEIGHT FABRIC <span>//</span>
+                LAKERS PALETTE EDITION <span>//</span> THE PREMIUM CUT <span>//</span> HEAVYWEIGHT FABRIC <span>//</span>
             </div>
         </div>
     </div>
 
-    <!-- Brand Manifesto -->
+    <!-- Brand Manifesto (Proverbio) -->
     <section class="manifesto-section">
         <p class="manifesto-text reveal-up">
-            Diseñada en la frontera. Usada en el mundo. No es solo ropa, es una <strong>declaración de intenciones</strong>. Calidad sin compromisos, cortes oversized perfectos.
+            El miedo no evita la muerte, solo detiene la vida. <strong>FAITH OVER FEAR.</strong> Avanza sin dudar, la verdadera fuerza reside en caminar con fe.
         </p>
     </section>
 
-    <!-- Product Split Section -->
+    <!-- Product Split Section with Central Gold Marquee -->
     <section class="split-section" id="collection">
-        <div class="split-divider"></div>
+        
+        <!-- The Center Divider: Gold Infinite Marquee -->
+        <div class="split-divider-marquee">
+            <div class="marquee-rotater">
+                <div class="vertical-marquee-track">
+                    <div class="vertical-marquee-text">
+                        FAITH OVER FEAR <span>//</span> AURASAINT EXCLUSIVE <span>//</span> NO BOUNDARIES <span>//</span> 
+                        FAITH OVER FEAR <span>//</span> AURASAINT EXCLUSIVE <span>//</span> NO BOUNDARIES <span>//</span> 
+                    </div>
+                    <div class="vertical-marquee-text">
+                        FAITH OVER FEAR <span>//</span> AURASAINT EXCLUSIVE <span>//</span> NO BOUNDARIES <span>//</span> 
+                        FAITH OVER FEAR <span>//</span> AURASAINT EXCLUSIVE <span>//</span> NO BOUNDARIES <span>//</span> 
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Black Side -->
         <div class="split-side side-black">
@@ -503,12 +564,12 @@
         <img src="logo.jpg" alt="AuraSaint Logo" class="footer-logo-img reveal-up">
         
         <div class="contact-widget reveal-up">
-            <p class="contact-msg">Asegura tu pieza antes del sold out.</p>
-            <a href="https://wa.me/526311295519?text=Hola%20AuraSaint!%20🔥%20Me%20interesa%20ordenar%20una%20camisa." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <p class="contact-msg">¿Listo para hacer tu declaración? Ordena ahora.</p>
+            <a href="https://wa.me/526311295519?text=Hola%20AuraSaint!%20🔥%20Me%20interesa%20ordenar%20una%20camisa%20de%20la%20nueva%20colección." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                     <path d="M12.031 0C5.383 0 0 5.383 0 12.031c0 2.124.553 4.195 1.604 6.014L.453 24l6.105-1.604a11.972 11.972 0 005.473 1.328c6.648 0 12.031-5.383 12.031-12.031S18.679 0 12.031 0zm3.805 17.336c-.523 1.477-2.618 2.05-3.664 2.148-1.047.098-2.406-.195-4.188-1.293-1.781-1.098-3.664-3.559-4.711-5.656-1.047-2.098-1.047-4.195 0-5.766 1.047-1.57 2.618-1.57 3.141-1.57.523 0 1.047.098 1.309.785.262.688.89 2.148.996 2.344.105.195.211.488.051.781-.156.293-.262.488-.523.781-.262.293-.523.688-.734.89-.211.203-.426.422-.164.89.262.469 1.152 1.93 2.461 3.094 1.309 1.164 2.723 1.57 3.195 1.766.473.195.734.148 1.047-.195.313-.344 1.36-1.57 1.727-2.098.367-.527.734-.441 1.152-.293.418.148 2.723 1.281 3.195 1.516.473.234.785.344.89.539.105.195.105 1.152-.418 2.629z"/>
                 </svg>
-                Contactar por WhatsApp
+                Mandar Mensaje
             </a>
         </div>
 
@@ -533,7 +594,7 @@
         <div class="modal-box" onclick="event.stopPropagation()">
             <button class="modal-close-btn" onclick="toggleModal('modal-white')">&times;</button>
             <h3 class="modal-header">White Edition</h3>
-            <p class="modal-text">El contraste perfecto. Blanco inmaculado, tela gruesa que no transparenta con detalles en morado Lakers.</p>
+            <p class="modal-text">El contraste perfecto. Blanco inmaculado, tela gruesa que no transparenta con detalles sutiles.</p>
             <p class="modal-text"><strong>Fit:</strong> Boxy / Oversized.</p>
             <p class="modal-text"><strong>Instrucciones:</strong> Lavar con ropa blanca, planchar al revés.</p>
         </div>
@@ -555,7 +616,6 @@
 
             // 2. Intersection Observer for Natural Reveal Animations
             const revealElements = document.querySelectorAll('.reveal-up, .reveal-scale');
-            
             const revealOptions = {
                 threshold: 0.15,
                 rootMargin: "0px 0px -50px 0px"
@@ -565,7 +625,7 @@
                 entries.forEach(entry => {
                     if (!entry.isIntersecting) return;
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Run once
+                    observer.unobserve(entry.target); 
                 });
             }, revealOptions);
 
@@ -580,11 +640,8 @@
                     const posX = e.clientX;
                     const posY = e.clientY;
 
-                    // Dot follows instantly
                     cursorDot.style.left = `${posX}px`;
                     cursorDot.style.top = `${posY}px`;
-
-                    // Outline follows with slight delay using CSS transition
                     cursorOutline.style.left = `${posX}px`;
                     cursorOutline.style.top = `${posY}px`;
                 });
